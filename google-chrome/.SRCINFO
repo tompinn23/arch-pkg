@@ -1,0 +1,32 @@
+pkgbase = google-chrome
+	pkgdesc = The popular and trusted web browser by Google (Stable Channel)
+	pkgver = 73.0.3683.103
+	pkgrel = 1
+	url = https://www.google.com/chrome
+	install = google-chrome.install
+	arch = x86_64
+	license = custom:chrome
+	depends = alsa-lib
+	depends = gtk3
+	depends = libcups
+	depends = libxss
+	depends = libxtst
+	depends = nss
+	optdepends = kdialog: for file dialogs in KDE
+	optdepends = gnome-keyring: for storing passwords in GNOME keyring
+	optdepends = kwallet: for storing passwords in KWallet
+	optdepends = gtk3-print-backends: for printing
+	optdepends = libunity: for download progress on KDE
+	optdepends = ttf-liberation: fix fonts for some PDFs (CRBug #369991)
+	optdepends = xdg-utils
+	options = !emptydirs
+	options = !strip
+	source = google-chrome-stable_73.0.3683.103_amd64.deb::https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	source = eula_text.html
+	source = google-chrome-stable.sh
+	sha512sums = 19a1719ef9b1946401749f0ede6ee381ecbdeeb3e03afa474fd3122de6e6a5db983c24af18c81d135d703bd30b95673dc277c64fc19127b02ce64f795fc79cd1
+	sha512sums = a225555c06b7c32f9f2657004558e3f996c981481dbb0d3cd79b1d59fa3f05d591af88399422d3ab29d9446c103e98d567aeafe061d9550817ab6e7eb0498396
+	sha512sums = e1a76d6aa17a13325e30329fde5d7acd5f6863c6b4fc8a9b521b1995342447ab71188b1a176b58ed95a409659936544cf4e8cb492e0fda69dabfeae24f02bbf3
+
+pkgname = google-chrome
+

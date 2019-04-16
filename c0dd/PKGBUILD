@@ -1,0 +1,30 @@
+# Maintainer: Tom Pinnock <tomj.pinnock@outlook.com>
+pkgbase='c0dd'
+pkgname=(c0dd-base c0dd-desktop c0dd-laptop c0dd-devel)
+pkgver=1
+pkgrel=1
+pkgdesc="System configs"
+arch=(any)
+license=(MIT)
+groups=(c0dd)
+
+source=(	
+	c0dd-base.sudoers
+)
+
+sha256sums=(SKIP)
+
+package_c0dd-base() {
+	depends=(bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils
+	e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip
+	inetutils iproute2 iputils less licenses linux logrotate man-db man-pages
+	mdadm pacman pciutils perl procps-ng psmisc s-nail sed shadow sysfsutils
+	systemd-sysvcompat tar texinfo usbutils util-linux which)
+	
+	# Extra General
+	depends+=(sudo wget unzip dialog reflector)
+
+	install -Dm 0640 c0dd-base.sudoers "${pkgdir}/etc/sudoers.d/c0dd-base"
+
+
+}

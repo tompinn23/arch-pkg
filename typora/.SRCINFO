@@ -1,0 +1,15 @@
+pkgbase = typora
+	pkgdesc = Typora will give you a seamless experience as both a reader and a writer.
+	pkgver = 0.9.68
+	pkgrel = 1
+	url = https://typora.io/
+	arch = x86_64
+	license = custom:"Copyright (c) 2015 Abner Lee All Rights Reserved."
+	depends = gconf
+	depends = libxss
+	optdepends = noto-fonts-emoji: Or some other emoji font to see emojis
+	source = https://typora.io/./linux/typora_0.9.68_amd64.deb
+	md5sums = 456ae41faff0cffc9d8e71458f4abb30
+
+pkgname = typora
+
