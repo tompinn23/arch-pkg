@@ -37,13 +37,13 @@ do
 		echo "${INFOLOG} Signing package file: ${package_file}"
 		echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes "$package_file"
 	done
-	repo-add -R $REPODIR/repo/c0dd.db.tar $(find -name '*.pkg.tar.xz' -printf "%f\n")
-	cp $(find -name '*.pkg.tar.xz' -printf "%f\n") $REPODIR/repo/
-	cp $(find -name '*.sig' -printf "%f\n") $REPODIR/repo/
+	repo-add -R $REPODIR/c0dd.db.tar $(find -name '*.pkg.tar.xz' -printf "%f\n")
+	cp $(find -name '*.pkg.tar.xz' -printf "%f\n") $REPODIR/
+	cp $(find -name '*.sig' -printf "%f\n") $REPODIR/
 	cp PKGBUILD PKGBUILD.old
 	cd ..
 done
-echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db.tar
-echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db
-echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.files
-rm $REPODIR/repo/*.old
+echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/c0dd.db.tar
+echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/c0dd.db
+echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/c0dd.files
+rm $REPODIR/*.old
