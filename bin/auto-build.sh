@@ -15,11 +15,8 @@ do
 done
 
 
-echo 1 > fakeout
-gpg --detach-sign fakeout
-rm fakeout
-rm fakeout.sig
 REPODIR=${1:-$(pwd)}
+PASSWORD=$2
 for pkg in $(aur graph */.SRCINFO | tsort | tac) 
 do
 	cd $pkg
@@ -38,7 +35,7 @@ do
 	for package_file in $(find -name '*.pkg.tar.xz' -printf "%f\n") 
 	do
 		echo "${INFOLOG} Signing package file: ${package_file}"
-		gpg --detach-sign --use-agent --no-armor --yes "$package_file"
+		echo $PASSWORD | gpg --batch --pintentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes "$package_file"
 	done
 	repo-add -R $REPODIR/repo/c0dd.db.tar $(find -name '*.pkg.tar.xz' -printf "%f\n")
 	cp $(find -name '*.pkg.tar.xz' -printf "%f\n") $REPODIR/repo/
@@ -46,7 +43,7 @@ do
 	cp PKGBUILD PKGBUILD.old
 	cd ..
 done
-gpg --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db.tar
-gpg --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db
-gpg --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.files
+echo $PASSWORD | gpg --batch --pintentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db.tar
+echo $PASSWORD | gpg --batch --pintentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db
+echo $PASSWORD | gpg --batch --pintentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.files
 rm $REPODIR/repo/*.old
