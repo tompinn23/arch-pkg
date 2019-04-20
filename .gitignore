@@ -8,3 +8,4 @@ queue
 *.deb
 .SRCINFO
 *.sig
+*.old
