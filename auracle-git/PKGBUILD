@@ -21,6 +21,7 @@ pkgver() {
 }
 
 build () {
+  echo "HELLO WORLD"
   cd "$_pkgname"
 
   local action=setup
