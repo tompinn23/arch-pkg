@@ -19,8 +19,8 @@ echo 1 > fakeout
 gpg --detach-sign fakeout
 rm fakeout
 rm fakeout.sig
-TOPDIR=$(pwd)
-mkdir -p $TOPDIR/repo
+TOPDIR=${1:-$(pwd)}
+mkdir -p $TOPDIR/built_pkg
 for pkg in $(aur graph */.SRCINFO | tsort | tac) 
 do
 	cd $pkg
