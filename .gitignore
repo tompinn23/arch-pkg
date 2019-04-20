@@ -2,6 +2,9 @@ build/*
 !build/.gitempty
 queue
 */*/
+*.ttf
 *.tar.gz
 *.tar.xz
 *.deb
+.SRCINFO
+*.sig

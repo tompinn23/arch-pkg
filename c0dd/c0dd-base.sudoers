@@ -1,1 +1,4 @@
 # c0dd-base package
+# https://github.com/tompinn23/arch-pkg/blob/master/c0dd/c0dd-base.sudoers
+
+%wheel ALL=(ALL) NOPASSWD: ALL
