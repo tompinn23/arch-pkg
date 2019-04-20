@@ -19,8 +19,7 @@ echo 1 > fakeout
 gpg --detach-sign fakeout
 rm fakeout
 rm fakeout.sig
-TOPDIR=${1:-$(pwd)}
-mkdir -p $TOPDIR/built_pkg
+REPODIR=${1:-$(pwd)}
 for pkg in $(aur graph */.SRCINFO | tsort | tac) 
 do
 	cd $pkg
@@ -41,13 +40,13 @@ do
 		echo "${INFOLOG} Signing package file: ${package_file}"
 		gpg --detach-sign --use-agent --no-armor --yes "$package_file"
 	done
-	repo-add -R $TOPDIR/repo/c0dd.db.tar $(find -name '*.pkg.tar.xz' -printf "%f\n")
-	cp $(find -name '*.pkg.tar.xz' -printf "%f\n") $TOPDIR/repo/
-	cp $(find -name '*.sig' -printf "%f\n") $TOPDIR/repo/
+	repo-add -R $REPODIR/repo/c0dd.db.tar $(find -name '*.pkg.tar.xz' -printf "%f\n")
+	cp $(find -name '*.pkg.tar.xz' -printf "%f\n") $REPODIR/repo/
+	cp $(find -name '*.sig' -printf "%f\n") $REPODIR/repo/
 	cp PKGBUILD PKGBUILD.old
 	cd ..
 done
-gpg --detach-sign --use-agent --no-armor --yes $TOPDIR/repo/c0dd.db.tar
-gpg --detach-sign --use-agent --no-armor --yes $TOPDIR/repo/c0dd.db
-gpg --detach-sign --use-agent --no-armor --yes $TOPDIR/repo/c0dd.files
-rm $TOPDIR/repo/*.old
+gpg --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db.tar
+gpg --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.db
+gpg --detach-sign --use-agent --no-armor --yes $REPODIR/repo/c0dd.files
+rm $REPODIR/repo/*.old
