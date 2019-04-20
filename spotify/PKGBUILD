@@ -43,7 +43,7 @@ sha512sums_x86_64=('f20f2c998a205f189a19f332b2e738a0ec98a34520765c0e1d27d95d92f7
                    '7f69b6a5b8647002be50210cf894b35fe0d2bc04e6b43321047e2229cd0ddae32c5684ea6befd9195c5fed730cfdaaecbdda14a1a8037c2be9e3d536d98a61a3')
 # Old key: 0DF731E45CE24F27EEEB1450EFDC8610341D9410
 # Old key (17.12.2018): 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-validpgpkeys=('931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90') # Spotify <tux@spotify.com>
+# validpgpkeys=('931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90') # Spotify <tux@spotify.com>
 
 # Spotify uses different names for the arch
 if [ "${CARCH}" = "i686" ]; then
