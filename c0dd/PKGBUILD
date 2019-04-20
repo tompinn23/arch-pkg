@@ -1,6 +1,6 @@
 # Maintainer: Tom Pinnock <tomj.pinnock@outlook.com>
 pkgbase='c0dd'
-pkgname=(c0dd-base c0dd-desktop c0dd-laptop c0dd-devel c0dd-aur)
+pkgname=(c0dd-base c0dd-desktop c0dd-laptop c0dd-devel c0dd-aur c0dd-firmware)
 pkgver=2
 pkgrel=1
 pkgdesc="System configs"
@@ -10,9 +10,10 @@ groups=(c0dd)
 
 source=(	
 	c0dd-base.sudoers
+	firmware-6.bin
 )
 
-sha256sums=(SKIP)
+sha256sums=(SKIP SKIP)
 
 package_c0dd-base() {
 	install=c0dd-base.install
@@ -104,4 +105,8 @@ package_c0dd-aur() {
 	depends=(c0dd-devel)
 	
 	depends+=(auracle-git aurutils yay)
+}
+
+package_c0dd-firmware() {
+	install -D -m0644 firmware-6.bin "${pkgdir}"/usr/lib/firmware/ath10k/QCA6174/hw3.0/firmware-6.bin
 }
