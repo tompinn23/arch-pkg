@@ -21,10 +21,12 @@ for pkg in $(aur graph */.SRCINFO | tsort | tac)
 do
 	cd $pkg
 	echo -e "${INFOLOG} Building ${pkg}"
+	echo $(pwd)
 	if [ -f "PKGBUILD.old" ]; then
 		shaOld=$(sha256sum -z PKGBUILD.old | awk '{ print $1 }')
 		shaNew=$(sha256sum -z PKGBUILD | awk '{ print $1 }')
-		found_pkg=($(find -iname '*.pkg.tar.xz'))
+		found_pkg=($(find -name '*.pkg.tar.xz'))
+		echo $found_pkg
 		if [ $shaOld == $shaNew ] && [ ${#found_pkg} -gt 0 ]; then
 			echo -e "${WARNINGLOG} Package: \"${pkg}\" has not changed not building.\n"
 			cd ..
@@ -37,7 +39,11 @@ do
 		echo "${INFOLOG} Signing package file: ${package_file}"
 		echo $PASSWORD | gpg --batch --pinentry-mode=loopback --passphrase-fd=0 --detach-sign --use-agent --no-armor --yes "$package_file"
 	done
-	repo-add -R $REPODIR/c0dd.db.tar $(find -name '*.pkg.tar.xz' -printf "%f\n")
+	for package in $(find -name '*.pkg.tar.xz' -printf "%f\n")
+	do
+		echo "${INFOLOG} Adding Package: ${package}"
+		repo-add -R $REPODIR/c0dd.db.tar $package
+	done
 	cp $(find -name '*.pkg.tar.xz' -printf "%f\n") $REPODIR/
 	cp $(find -name '*.sig' -printf "%f\n") $REPODIR/
 	cp PKGBUILD PKGBUILD.old

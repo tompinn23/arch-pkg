@@ -1,0 +1,39 @@
+From 7e60c74329353db28db00552028bc88cd2a52346 Mon Sep 17 00:00:00 2001
+From: James Almer <jamrial@gmail.com>
+Date: Tue, 26 Dec 2017 19:40:27 -0300
+Subject: [PATCH] avcodec/libx264: set supported pix_fmts at runtime rather
+ than build time
+
+This partially reverts a change in behavior introduced in 2a111c99a60fdf4fe5eea2b073901630190c6c93.
+
+Signed-off-by: James Almer <jamrial@gmail.com>
+---
+ libavcodec/libx264.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/libavcodec/libx264.c b/libavcodec/libx264.c
+index 754383e080d..0e714f16152 100644
+--- a/libavcodec/libx264.c
++++ b/libavcodec/libx264.c
+@@ -895,14 +895,16 @@ static const enum AVPixelFormat pix_fmts_8bit_rgb[] = {
+ 
+ static av_cold void X264_init_static(AVCodec *codec)
+ {
+-    if (X264_BIT_DEPTH == 8)
++#if X264_BUILD < 153
++    if (x264_bit_depth == 8)
+         codec->pix_fmts = pix_fmts_8bit;
+-    else if (X264_BIT_DEPTH == 9)
++    else if (x264_bit_depth == 9)
+         codec->pix_fmts = pix_fmts_9bit;
+-    else if (X264_BIT_DEPTH == 10)
++    else if (x264_bit_depth == 10)
+         codec->pix_fmts = pix_fmts_10bit;
+-    else /* X264_BIT_DEPTH == 0 */
+-        codec->pix_fmts = pix_fmts;
++#else
++    codec->pix_fmts = pix_fmts;
++#endif
+ }
+ 
+ #define OFFSET(x) offsetof(X264Context, x)
