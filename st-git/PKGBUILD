@@ -20,7 +20,7 @@ source=('git://git.suckless.org/st'
 	'st-scrollback.diff'
 	'st-scrollback-mouse.diff')
 sha1sums=('SKIP'
-	2b8d668f2ce826a08b43ccce1ae1ab433048c3d8
+	'SKIP'
 	fc5140eb0cc74636e5a0f5cd629e3cfbd10c9ed7
 	38718fd650e04c8e7d7f71e53585e3589f545866)
 

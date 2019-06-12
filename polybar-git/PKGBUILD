@@ -2,11 +2,11 @@
 # Contributor: Michael Carlberg <c@rlberg.se>
 _pkgname=polybar
 pkgname="${_pkgname}-git"
-pkgver=3.3.0.r77.gd5112c9b
+pkgver=3.3.0.r92.g7724c4dc
 pkgrel=1
 pkgdesc="A fast and easy-to-use status bar"
 arch=("i686" "x86_64")
-url="https://github.com/jaagr/polybar"
+url="https://github.com/polybar/polybar"
 license=("MIT")
 depends=("cairo" "xcb-util-image" "xcb-util-wm" "xcb-util-xrm" "xcb-util-cursor")
 optdepends=("alsa-lib: alsa module support"
