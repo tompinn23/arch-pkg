@@ -19,7 +19,7 @@ package_c0dd-base() {
 	
 	depends=(bash bzip2 coreutils cryptsetup device-mapper dhcpcd diffutils
 	e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip
-	inetutils iproute2 iputils less licenses linux linux-firmware logrotate man-db man-pages
+	inetutils iproute2 iputils less licenses linux linux-firmware logrotate lvm2 man-db man-pages
 	mdadm pacman pciutils perl procps-ng psmisc s-nail sed shadow sysfsutils
 	systemd-sysvcompat tar texinfo usbutils util-linux which)
 	
@@ -55,7 +55,7 @@ package_c0dd-desktop () {
 	depends+=(rofi i3-gaps-git compton)
 
 	# Applications
-	depends+=(termite google-chrome code-git spotify boostnote typora)
+	depends+=(termite google-chrome spotify boostnote typora)
 
 	# Utility
 	depends+=(bluez bluez-utils pulseaudio pulseaudio-alsa pulseaudio-bluetooth alsa-utils pavucontrol)
